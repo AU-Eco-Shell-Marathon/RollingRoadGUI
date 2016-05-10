@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="RollingRoad.WinApplication.Views.DataSetsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RollingRoad.WinApplication.Views"
+             xmlns:winApplication="clr-namespace:RollingRoad.WinApplication"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:viewModels="clr-namespace:RollingRoad.WinApplication.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500" d:DataContext="{d:DesignInstance viewModels:DataSetsViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" MinWidth="160"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <!-- Data select -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Select dataset:</TextBlock>
+
+            <!-- Loaded datasets -->
+            <ListView Grid.Row="1" x:Name="ListViewDataselect" ItemsSource="{Binding DataSets}" SelectionMode="Multiple" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5, 0, 5, 0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectionChanged}"></i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="IsSelected" Value="{Binding Mode=TwoWay, Path=IsSelected}"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="viewModels:DataSetViewModel">
+                        <Grid  VerticalAlignment="Top">
+                            <!-- Close button -->
+                            <!-- <Button Content="X" Margin="0,10,10,0" Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Command="{Binding ElementName=ListViewDataselect,Path=RemoveSubjectCommand}"/> -->
+
+                            <StackPanel>
+                                <!-- Name -->
+                                <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding}" Margin="10,10,40,0" VerticalAlignment="Top" />
+
+                                <!-- Description -->
+                                <TextBlock TextWrapping="Wrap" Margin="10,10,10,10" Text="{Binding Description}"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Load button -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Command="{Binding ImportFromFileCommand}" Margin="10, 10, 10, 10">Import</Button>
+                <Button Grid.Column="1" Command="{Binding RefreshCommand}" Margin="10, 10, 10, 10">Refresh</Button>
+            </Grid>
+        </Grid>
+
+        <GridSplitter Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+
+        <!-- Chart -->
+        <winApplication:LineChart ItemsSource="{Binding SelectedDatalists}" x:Name="ViewDataChart" Grid.Column="2"/>
+    </Grid>
+</UserControl>

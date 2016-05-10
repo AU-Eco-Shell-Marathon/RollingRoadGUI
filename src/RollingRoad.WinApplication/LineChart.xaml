@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="RollingRoad.WinApplication.LineChart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+             xmlns:viewModels="clr-namespace:RollingRoad.WinApplication.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500" x:Name="LineChartUC">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto" MinWidth="150"/>
+        </Grid.ColumnDefinitions>
+        
+        <d3:ChartPlotter x:Name="Chart" Grid.Column="0" Margin="10">
+            <d3:HorizontalAxisTitle x:Name="HorizontalAxisTitle"  Content="Time (Seconds)"/>
+        </d3:ChartPlotter>
+        
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ListView x:Name="LiveDataStackPanel" Grid.Row="0" ItemsSource="{Binding ItemsSource, ElementName=LineChartUC}">
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="viewModels:DataListViewModel">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding Selected}"/>
+                            <Rectangle Margin="5, 5, 0, 5" Width="10" Grid.Row="0" Grid.Column="1" Fill="{Binding Fill}"/>
+                            <TextBlock Margin="5, 0, 0, 0" Grid.Row="0" Grid.Column="2" Text="{Binding}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding NewestValue}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Graph options -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Update rate -->
+                <Label Grid.Row="0" Grid.Column="0" Content="Update rate:"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" 
+                          ItemsSource="{Binding RefreshRateOptions, ElementName=LineChartUC}" 
+                          SelectedIndex="{Binding SelectedRefreshRate, ElementName=LineChartUC}"/>
+
+                <!-- Buffer size -->
+                <Label Grid.Row="1" Grid.Column="0" Content="Display buffer size:"/>
+                <ComboBox Grid.Row="1" Grid.Column="1" 
+                          IsEnabled="{Binding BufferSizeEnabled, ElementName=LineChartUC}"
+                          ItemsSource="{Binding BufferSizeOptions, ElementName=LineChartUC}" 
+                          SelectedIndex="{Binding SelectedBufferSize, ElementName=LineChartUC}"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Back-buffer usage:"/>
+                <Label Grid.Row="2" Grid.Column="1" Content="{Binding BufferSizeUsage, ElementName=LineChartUC}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

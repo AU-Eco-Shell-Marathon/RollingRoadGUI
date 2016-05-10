@@ -1,0 +1,41 @@
+﻿<Window x:Class="RollingRoad.WinApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:RollingRoad.WinApplication"
+        xmlns:vm="clr-namespace:RollingRoad.WinApplication.ViewModels"
+        xmlns:views="clr-namespace:RollingRoad.WinApplication.Views"
+        Title="Rolling Road" Height="450" Width="800" MinWidth="525" MinHeight="350">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <local:TabItemTemplateSelector x:Key="TabSelector"/>
+
+        <DataTemplate x:Key="LiveDataTemplate" DataType="vm:LiveDataSourceViewModel">
+            <views:LiveDataSourceView/>
+        </DataTemplate>
+        <DataTemplate x:Key="LoggerTemplate" DataType="vm:LoggerViewModel">
+            <views:LoggerView/>
+        </DataTemplate>
+        <DataTemplate x:Key="ViewTemplate" DataType="vm:DataSetsViewModel">
+            <views:DataSetsView/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <!-- Menu -->
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Quit" Command="{Binding QuitCommand}"/>
+                </MenuItem>
+
+                <MenuItem Header="_Help">
+                    <MenuItem Header="_About" Command="{Binding OpenAboutWindowCommand}"/>
+                </MenuItem>
+            </Menu>
+
+            <TabControl ContentTemplateSelector="{StaticResource TabSelector}" ItemsSource="{Binding Tabs}"/>
+
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="RollingRoad.WinApplication.Views.TestSessionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RollingRoad.WinApplication.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Text="Test Session"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Track: "/>
+        <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding TestSessionList}" Margin="2"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Force Target: "/>
+        <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentTorque}"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Status: "/>
+        <Label Grid.Row="3" Grid.Column="1" Content="{Binding Status}"/>
+
+        <Button Grid.Row="4" Grid.Column="1" Command="{Binding StartStopCommand}" Content="{Binding Status}" Margin="2"/>
+    </Grid>
+</UserControl>

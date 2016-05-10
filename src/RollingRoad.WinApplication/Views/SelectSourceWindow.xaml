@@ -1,0 +1,24 @@
+﻿<Window x:Class="RollingRoad.WinApplication.Views.SelectSourceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Select Source" Height="250" Width="450" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Select repository" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <Label Grid.Row="1" Content="Simulate from a file:" VerticalAlignment="Center" Margin="20, 0, 250, 0"/>
+        <Button Grid.Row="1" Content="Select file" Command="{Binding LoadFromFileCommand}" Margin="298,0,0,0" Width="104" Height="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+        <ComboBox x:Name="SelectComPortComboBox" ItemsSource="{Binding ComPorts}" SelectedIndex="{Binding ComPortsSelectedIndex, Mode=TwoWay}" HorizontalAlignment="Left" Margin="180,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="84"/>
+        <Label Content="Select COM-port:" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" VerticalAlignment="Center"/>
+        <Button Content="Connect" HorizontalAlignment="Left" Margin="298,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="104" Height="22" Command="{Binding OpenComPortCommand}"/>
+    </Grid>
+</Window>

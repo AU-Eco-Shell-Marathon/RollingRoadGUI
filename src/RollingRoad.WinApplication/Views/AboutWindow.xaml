@@ -1,0 +1,24 @@
+﻿<Window x:Class="RollingRoad.WinApplication.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="About" Height="300" Width="300" ResizeMode="NoResize">
+    <Grid>
+        <!-- Description -->
+        <Label Content="Description:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="15,32,10,0" TextWrapping="Wrap" Text="Data-collector and viewer made for the Rolling Road used in test of AU2, Aarhus university's entry in the Shell Eco Marathon." VerticalAlignment="Top"/>
+
+        <!-- Info -->
+        <Label Content="Info:" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+        <!-- Version info -->
+        <Label Margin="67,0,0,125" Height="26" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="{Binding Version, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Width="214"/>
+        <Label Margin="10,0,0,125" Height="26" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Version:"/>
+
+
+        <!-- Year -->
+        <Label Content="2015" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
