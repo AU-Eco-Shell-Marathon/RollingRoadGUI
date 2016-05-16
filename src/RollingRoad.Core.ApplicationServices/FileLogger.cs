@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 
 namespace RollingRoad.Core.ApplicationServices
 {
+    [ExcludeFromCodeCoverage]
     public class FileLogger : Logger, IDisposable
     {
         public string FilePath { get; }

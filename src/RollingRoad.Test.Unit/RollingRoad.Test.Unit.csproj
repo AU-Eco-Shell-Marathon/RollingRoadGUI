@@ -72,7 +72,7 @@
     <Compile Include="DataAccess\CsvDataInterpeterTests.cs" />
     <Compile Include="DomainModel\DataPointTests.cs" />
     <Compile Include="DomainModel\DataListTests.cs" />
-    <Compile Include="EventLoggerTests.cs" />
+    <Compile Include="ApplicationServices\LoggerTests.cs" />
     <Compile Include="LiveDataEmulatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccess\SP4MCInterpreterTests.cs" />

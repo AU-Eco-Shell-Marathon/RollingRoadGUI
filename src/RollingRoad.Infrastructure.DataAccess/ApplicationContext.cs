@@ -1,9 +1,11 @@
 ﻿using System.Data.Entity;
+using System.Diagnostics.CodeAnalysis;
 using RollingRoad.Core.DomainModel;
 using RollingRoad.Infrastructure.DataAccess.Mapping;
 
 namespace RollingRoad.Infrastructure.DataAccess
 {
+    [ExcludeFromCodeCoverage]
     public class ApplicationContext : DbContext
     {
 

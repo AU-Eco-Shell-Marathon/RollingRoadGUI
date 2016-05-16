@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using NSubstitute;
 using NUnit.Framework;
 using RollingRoad.Infrastructure.DataAccess;
 
@@ -190,6 +191,65 @@ namespace RollingRoad.Test.Unit.DataAccess
             _interpreter.Start(true);
 
             Assert.That(Encoding.ASCII.GetString(_ms.ToArray()), Is.EqualTo("0 RollingRoad\n"));
+        }
+
+        [Test]
+        public void Calibrate_CallCalibrate_CalibrateSent()
+        {
+            _interpreter.Calibrate();
+
+            Assert.That(Encoding.ASCII.GetString(_ms.ToArray()), Is.EqualTo("6\n"));
+        }
+
+        [TestCase(5.0)]
+        [TestCase(-5.0)]
+        [TestCase(0.0)]
+        [TestCase(0.852)]
+        [TestCase(-0.852)]
+        public void Kp_SendPIDValue_ValueSet(double value)
+        {
+            StreamWriter writer = new StreamWriter(_ms);
+
+            _interpreter.Start(false);
+
+            WriteToMemoryStream(writer, $"5 {value.ToString(_cultureTarget)} 4.2 5.2\n");
+            _interpreter.Listen();
+
+            Assert.That(_interpreter.Kp, Is.EqualTo(value).Within(double.Epsilon));
+        }
+
+        [TestCase(5.0)]
+        [TestCase(-5.0)]
+        [TestCase(0.0)]
+        [TestCase(0.852)]
+        [TestCase(-0.852)]
+        public void Ki_SendPIDValue_ValueSet(double value)
+        {
+            StreamWriter writer = new StreamWriter(_ms);
+
+            _interpreter.Start(false);
+
+            WriteToMemoryStream(writer, $"5 3.2 {value.ToString(_cultureTarget)} 5.2\n");
+            _interpreter.Listen();
+
+            Assert.That(_interpreter.Ki, Is.EqualTo(value).Within(double.Epsilon));
+        }
+
+        [TestCase(5.0)]
+        [TestCase(-5.0)]
+        [TestCase(0.0)]
+        [TestCase(0.852)]
+        [TestCase(-0.852)]
+        public void Kd_SendPIDValue_KpValueSet(double value)
+        {
+            StreamWriter writer = new StreamWriter(_ms);
+
+            _interpreter.Start(false);
+
+            WriteToMemoryStream(writer, $"5 3.2 4.2 {value.ToString(_cultureTarget)}\n");
+            _interpreter.Listen();
+
+            Assert.That(_interpreter.Kd, Is.EqualTo(value).Within(double.Epsilon));
         }
     }
 }

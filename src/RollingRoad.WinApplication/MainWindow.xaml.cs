@@ -1,11 +1,9 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Windows;
-using RollingRoad.Infrastructure.DataAccess;
 
 namespace RollingRoad.WinApplication
 {
+    [ExcludeFromCodeCoverage]
     public partial class MainWindow : Window
     {
         public MainWindow()

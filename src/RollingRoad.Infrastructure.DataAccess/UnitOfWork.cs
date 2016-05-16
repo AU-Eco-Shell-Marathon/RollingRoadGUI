@@ -2,12 +2,14 @@
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using RollingRoad.Core.DomainServices;
 
 namespace RollingRoad.Infrastructure.DataAccess
 {
     //https://github.com/snebjorn/mvc-onion-template/blob/69342689b2f2c178a137fa9dfd6fe73735c71bbc/Infrastructure.DataAccess/UnitOfWork.cs
+    [ExcludeFromCodeCoverage]
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DbContext _context;
@@ -54,9 +56,7 @@ namespace RollingRoad.Infrastructure.DataAccess
                 throw;
             }
         }
-
-        #region IDisposable
-
+        
         private bool _disposed;
 
         protected virtual void Dispose(bool disposing)
@@ -76,7 +76,5 @@ namespace RollingRoad.Infrastructure.DataAccess
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
-        #endregion
     }
 }

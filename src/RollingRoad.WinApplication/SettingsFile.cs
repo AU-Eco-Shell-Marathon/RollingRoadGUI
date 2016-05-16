@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
 namespace RollingRoad.WinApplication
 {
+    [ExcludeFromCodeCoverage]
     public static class Settings
     {
         public static ISettingsProvider ColorSettings { get; } = new SettingsFile("GraphColors.Settings");
@@ -15,6 +17,7 @@ namespace RollingRoad.WinApplication
     /// <summary>
     /// Settings file originally used in the game "Norse"
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class SettingsFile : ISettingsProvider
     {
         /// <summary>

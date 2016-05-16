@@ -180,6 +180,7 @@ namespace RollingRoad.Infrastructure.DataAccess
                         {
                             Logger?.WriteLine("Packet not matching protocol (5): " + line +
                                               ". Should be 5 <double> <double> <double>");
+                            return;
                         }
 
                         _kp = double.Parse(values[1], CultureInfo);

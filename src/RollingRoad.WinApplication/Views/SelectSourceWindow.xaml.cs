@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Windows;
 using System.Windows.Input;
 using RollingRoad.WinApplication.Dialogs;
 
@@ -7,6 +8,7 @@ namespace RollingRoad.WinApplication.Views
     /// <summary>
     /// Interaction logic for SelectSourceDialog.xaml
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public partial class SelectSourceWindow : Window
     {
         private readonly ISelectSourceDialog _vm;

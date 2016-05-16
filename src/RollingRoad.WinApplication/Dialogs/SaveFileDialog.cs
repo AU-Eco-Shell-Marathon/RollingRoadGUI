@@ -1,5 +1,8 @@
-﻿namespace RollingRoad.WinApplication.Dialogs
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace RollingRoad.WinApplication.Dialogs
 {
+    [ExcludeFromCodeCoverage]
     public class SaveFileDialog : ISaveFileDialog
     {
 

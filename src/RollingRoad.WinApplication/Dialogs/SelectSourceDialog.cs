@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.IO.Ports;
 using System.Linq;
 using System.Windows;
@@ -11,6 +12,7 @@ using MessageBox = System.Windows.MessageBox;
 
 namespace RollingRoad.WinApplication.Dialogs
 {
+    [ExcludeFromCodeCoverage]
     public class SelectSourceDialog : ISelectSourceDialog
     {
         public bool ShowDialog()

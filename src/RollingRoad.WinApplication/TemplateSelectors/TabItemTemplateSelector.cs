@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,6 +8,7 @@ using ViewModelTemplateTuple = System.Tuple<System.Type, string>;
 
 namespace RollingRoad.WinApplication
 {
+    [ExcludeFromCodeCoverage]
     public class TabItemTemplateSelector : DataTemplateSelector
     {
         private readonly List<ViewModelTemplateTuple> _viewModelTemplateList = new List<ViewModelTemplateTuple>()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Management;
@@ -12,6 +13,7 @@ namespace RollingRoad.WinApplication
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public partial class App : Application
     {
         public ILogger Logger { get; }

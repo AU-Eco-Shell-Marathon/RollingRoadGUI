@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using RollingRoad.Core.DomainServices;
 
 namespace RollingRoad.Infrastructure.DataAccess
 {
+    [ExcludeFromCodeCoverage]
     public class Repository<T> : IRepository<T>
         where T : class
     {

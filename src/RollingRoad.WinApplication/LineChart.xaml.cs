@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -20,6 +21,7 @@ namespace RollingRoad.WinApplication
     /// <summary>
     /// Interaction logic for LineChart.xaml
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public partial class LineChart : UserControl, INotifyPropertyChanged
     {
         public string XAxisName { get; } = "Time";
@@ -76,7 +78,7 @@ namespace RollingRoad.WinApplication
                     return;
 
                 _selectedBufferSize = value;
-                _settings.SetIntStat(nameof(_selectedBufferSize), value);
+                _settings.SetIntStat(nameof(SelectedBufferSize), value);
                 OnPropertyChanged();
             }
         }

@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
 using RollingRoad.Core.ApplicationServices;
 
-namespace RollingRoad.Test.Unit
+namespace RollingRoad.Test.Unit.ApplicationServices
 {
     [TestFixture]
-    public class EventLoggerTests
+    public class LoggerTests
     {
         [Test]
         public void WriteLine_SendString_EventCalled()
