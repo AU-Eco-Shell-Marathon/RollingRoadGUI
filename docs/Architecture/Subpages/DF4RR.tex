@@ -1,24 +1,23 @@
+% !TeX spellcheck = en_US
 \section{DF4RR - Data File for RollingRoad}
 
-\subsection{Introduction}
-
-DF4RR is a dataformat used to store collected data from rollingroad, the file format is based on CSV\footnote{Comma Seperated Values}\cite{CSVFileDescription}. But instead of ',' as a seperator, ';' is used. The files encoding must be UTF8\cite{UTF8Description}.
+DF4RR is a data storage format used to store collected data from RollingRoad, the file format is based on CSV\footnote{Comma Separated Values}\cite{CSVFileDescription}. But instead of ',' as a separator, ';' is used. The files encoding must be UTF8\cite{UTF8Description}.
 
 Note, the decimal mark used must be dots.
 
 \subsection{Header}
 
-First row, first column must be a cell\footnote{A cell is the values between two separators} containing the case-insensitive string "shell eco marathon".
+First row, first column must be a cell\footnote{A cell is the content between two separators} containing the case-insensitive string "shell eco marathon".
 
 The following columns in the first row must be filled with the datatype-names saved in the file.
 
-Second row, first column can contain a description about the datafile. The following columns must be filled with the datatype-units for the datatype-name above. 
+Second row, first column can contain a description about the datafile, but is not required. The following columns must be filled with the datatype-units for the datatype-name above, the number of names and units must match. 
 
 Examples of the first and seconds row can be seen section \vref{DF4RR-Example}
 
 \subsection{Data}
 
-Then follows the data. Each row will start with an empty cell that can be used for anything. The following cells must contain data, and the number of cells filled with data must match the number of datatypes described in the header. 
+After the header, data will be on a new row for each new reading. Each row will start with an empty cell that can be used for anything. The following cells must contain data, and the number of cells filled with data must match the number of datatypes described in the header. 
 
 \subsection{Example}
 \label{DF4RR-Example}
@@ -28,6 +27,6 @@ Test file 2;Seconds;Nm;Watt\\
 ;0.1;0;0\\
 ;0.2;0;20\\
 ;0.3;2;50\\
-;0.4;5;80\\
-;0.5;8;90\\
-;0.6;11;100\\
+%;0.4;5;80\\
+%;0.5;8;90\\
+%;0.6;11;100\\
