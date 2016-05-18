@@ -38,6 +38,7 @@ namespace RollingRoad.WinApplication.ViewModels
             DefaultExt = ".csv",
             Filter = "CSV Files (*.csv)|*.csv"
         };
+        public IErrorMessageBox ErrorMessageBox { get; set; } = new ErrorMessageBox();
 
         public TestSessionViewModel TestSession
         {
@@ -278,7 +279,7 @@ namespace RollingRoad.WinApplication.ViewModels
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Error: " + exception.Message, "Error opening source!", MessageBoxButton.OK, MessageBoxImage.Error);
+                ErrorMessageBox.Show("Error opening source!", "Error: " + exception.Message);
             }
         }
 
@@ -315,7 +316,7 @@ namespace RollingRoad.WinApplication.ViewModels
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error: " + e.Message, "Error saving data!", MessageBoxButton.OK, MessageBoxImage.Error);
+                ErrorMessageBox.Show("Error saving data!", "Error: " + e.Message);
                 Logger?.WriteLine("Error saving data: " + e.Message);
             }
 

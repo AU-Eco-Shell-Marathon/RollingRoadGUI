@@ -1,12 +1,9 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using NSubstitute;
 using NUnit.Framework;
 using RollingRoad.Core.ApplicationServices;
-using RollingRoad.Core.DomainModel;
 using RollingRoad.WinApplication.ViewModels;
 
 namespace RollingRoad.WinApplication.Test.Unit.ViewModels
@@ -81,5 +78,11 @@ namespace RollingRoad.WinApplication.Test.Unit.ViewModels
 
             Assert.That(_vm.DataSet.Count, Is.EqualTo(1));
         }*/
+
+        [Test]
+        public void ToString_Nothing_DescriptiveValue()
+        {
+            Assert.That(_vm.ToString(), Does.Contain("Live Data"));
+        }
     }
 }
