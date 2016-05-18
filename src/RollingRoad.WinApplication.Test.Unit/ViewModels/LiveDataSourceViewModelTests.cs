@@ -82,7 +82,7 @@ namespace RollingRoad.WinApplication.Test.Unit.ViewModels
         [Test]
         public void ToString_Nothing_DescriptiveValue()
         {
-            Assert.That(_vm.ToString(), Does.Contain("Live Data"));
+            Assert.That(_vm.ToString(), Does.Contain("Live data"));
         }
     }
 }
