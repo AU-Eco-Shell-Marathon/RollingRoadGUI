@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using NSubstitute;
 using NUnit.Framework;
 using RollingRoad.Core.ApplicationServices;
+using RollingRoad.Core.DomainModel;
+using RollingRoad.WinApplication.Dialogs;
 using RollingRoad.WinApplication.ViewModels;
 
 namespace RollingRoad.WinApplication.Test.Unit.ViewModels
@@ -70,19 +74,60 @@ namespace RollingRoad.WinApplication.Test.Unit.ViewModels
         {
             Assert.That(_vm.DataSet.Collection, Is.Empty);
         }
-        
-        /*public void Collection_SourceSend1Datapoint_NewListAdded()
-        {
-            _source.OnNextReadValue +=
-                Raise.Event(new LiveDataPointsEventArgs(new List<Tuple<DataPoint, DataType>>() {new Tuple<DataPoint, DataType>(new DataPoint(1), new DataType())}));
-
-            Assert.That(_vm.DataSet.Count, Is.EqualTo(1));
-        }*/
 
         [Test]
         public void ToString_Nothing_DescriptiveValue()
         {
             Assert.That(_vm.ToString(), Does.Contain("Live data"));
+        }
+
+        [Test]
+        public void DataSet_SourceNewDataEventCalled_DataPointAddedToSet()
+        {
+            ICollection<Tuple<DataPoint, DataType>> data = new List<Tuple<DataPoint, DataType>>();
+
+            data.Add(new Tuple<DataPoint, DataType>(new DataPoint(10), new DataType("TestName", "TestUnit")));
+
+            _source.OnNextReadValue += Raise.Event<EventHandler<LiveDataPointsEventArgs>>(new LiveDataPointsEventArgs(data));
+
+            Assert.That(_vm.DataSet.Collection.Where(x => x.Data.FirstOrDefault(y => y.Value == 10) != null).Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void DataSet_SourceNewDataEventCalled_DataListWithNameAddedToSet()
+        {
+            ICollection<Tuple<DataPoint, DataType>> data = new List<Tuple<DataPoint, DataType>>();
+
+            data.Add(new Tuple<DataPoint, DataType>(new DataPoint(10), new DataType("TestName", "TestUnit")));
+
+            _source.OnNextReadValue += Raise.Event<EventHandler<LiveDataPointsEventArgs>>(new LiveDataPointsEventArgs(data));
+
+            Assert.That(_vm.DataSet.Collection.Where(x => x.Name == "TestName").Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void DataSet_SourceNewDataEventCalled_DataListWithUnitAddedToSet()
+        {
+            ICollection<Tuple<DataPoint, DataType>> data = new List<Tuple<DataPoint, DataType>>();
+
+            data.Add(new Tuple<DataPoint, DataType>(new DataPoint(10), new DataType("TestName", "TestUnit")));
+
+            _source.OnNextReadValue += Raise.Event<EventHandler<LiveDataPointsEventArgs>>(new LiveDataPointsEventArgs(data));
+
+            Assert.That(_vm.DataSet.Collection.Where(x => x.Unit == "TestUnit").Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void SelectSourceCommand_SelectSourceDialogShowCalled()
+        {
+            ISelectSourceDialog dialog = Substitute.For<ISelectSourceDialog>();
+
+            _vm.SelectSourceDialog = dialog;
+
+            Task task = _vm.SelectSourceCommand.Execute();
+            task.Wait();
+
+            dialog.Received(1).ShowDialog();
         }
     }
 }

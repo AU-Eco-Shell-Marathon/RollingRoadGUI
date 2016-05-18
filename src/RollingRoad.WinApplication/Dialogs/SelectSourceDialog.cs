@@ -68,7 +68,7 @@ namespace RollingRoad.WinApplication.Dialogs
                 catch (Exception exception)
                 {
                     Logger?.WriteLine($"Error opening file {filename}: " + exception.Message);
-                    MessageBox.Show(exception.Message, "Error opening file", MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.MessageBox.Show(exception.Message, "Error opening file", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

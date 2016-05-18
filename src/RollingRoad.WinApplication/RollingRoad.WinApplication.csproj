@@ -67,14 +67,6 @@
       <HintPath>..\packages\DynamicDataDisplay.0.3.0.1\lib\net45\DynamicDataDisplay.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Mvvm.1.1.1\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
       <Private>True</Private>
@@ -122,9 +114,11 @@
     </ApplicationDefinition>
     <Compile Include="Dialogs\ErrorMessageBox.cs" />
     <Compile Include="Dialogs\IErrorMessageBox.cs" />
+    <Compile Include="Dialogs\IMessageBox.cs" />
     <Compile Include="Dialogs\IOpenFileDialog.cs" />
     <Compile Include="Dialogs\ISaveFileDialog.cs" />
     <Compile Include="Dialogs\ISelectSourceDialog.cs" />
+    <Compile Include="Dialogs\MessageBox.cs" />
     <Compile Include="Dialogs\OpenFileDialog.cs" />
     <Compile Include="Dialogs\SaveFileDialog.cs" />
     <Compile Include="Dialogs\SelectSourceDialog.cs" />

@@ -6,7 +6,7 @@ using RollingRoad.Core.DomainModel;
 namespace RollingRoad.Infrastructure.DataAccess
 {
     [ExcludeFromCodeCoverage]
-    public class CsvDataFile : IDataSetLoader
+    public class CsvDataFile : IDataSetDataFile
     {
         public string ExpectedHeader { get; set; } = "shell eco marathon";
 
@@ -49,6 +49,11 @@ namespace RollingRoad.Infrastructure.DataAccess
 
             //Return data
             return data;
+        }
+
+        public void WriteFile(string path, DataSet dataset, string header)
+        {
+            WriteToFile(path, dataset, header);
         }
 
         public DataSet LoadFromFile(string path)

@@ -39,6 +39,8 @@ namespace RollingRoad.WinApplication.ViewModels
             Filter = "CSV Files (*.csv)|*.csv"
         };
         public IErrorMessageBox ErrorMessageBox { get; set; } = new ErrorMessageBox();
+        public IMessageBox AskAboutChangesMessageBox { get; set; } = new Dialogs.MessageBox();
+        public IDataSetDataFile DataFileSaver { get; set; } = new CsvDataFile();
 
         public TestSessionViewModel TestSession
         {
@@ -248,7 +250,7 @@ namespace RollingRoad.WinApplication.ViewModels
             if (HasBeenSaved)
                 return true;
             
-            MessageBoxResult result = MessageBox.Show("Do you want to save changes?", "Unsaved changes",
+            MessageBoxResult result = AskAboutChangesMessageBox.Show("Do you want to save changes?", "Unsaved changes",
                 MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
 
             switch (result)
@@ -309,9 +311,9 @@ namespace RollingRoad.WinApplication.ViewModels
                     }
                 }
 
-                
+
                 //Save file
-                CsvDataFile.WriteToFile(SaveFileDialog.FileName, source, "shell eco marathon");
+                DataFileSaver.WriteFile(SaveFileDialog.FileName, source, "shell eco marathon");
                 return true;
             }
             catch (Exception e)

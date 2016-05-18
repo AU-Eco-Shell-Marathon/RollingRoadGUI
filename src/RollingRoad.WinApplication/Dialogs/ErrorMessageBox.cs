@@ -8,7 +8,7 @@ namespace RollingRoad.WinApplication.Dialogs
     {
         public void Show(string title, string message)
         {
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
+            System.Windows.MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

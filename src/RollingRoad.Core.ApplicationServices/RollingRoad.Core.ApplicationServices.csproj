@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="FileLogger.cs" />
     <Compile Include="ICalibrateControl.cs" />
-    <Compile Include="IDataSetLoader.cs" />
+    <Compile Include="IDataSetDataFile.cs" />
     <Compile Include="ILiveDataSource.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="IMotorControl.cs" />

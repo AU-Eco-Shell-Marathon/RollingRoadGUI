@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -33,7 +32,7 @@ namespace RollingRoad.WinApplication.ViewModels
                 _openFileDialog = value;
             }
         }
-        public IDataSetLoader DataSetLoader
+        public IDataSetDataFile DataSetLoader
         {
             get { return _dataSetLoader; }
             set
@@ -59,7 +58,7 @@ namespace RollingRoad.WinApplication.ViewModels
         private readonly IRepository<DataSet> _dataSetRepository; 
         private IOpenFileDialog _openFileDialog = new OpenFileDialog(){DefaultExt = ".csv",Filter = "CSV Files (*.csv)|*.csv"};
         private IErrorMessageBox _errorMessageBox = new ErrorMessageBox();
-        private IDataSetLoader _dataSetLoader = new CsvDataFile() {ExpectedHeader = "shell eco marathon"};
+        private IDataSetDataFile _dataSetLoader = new CsvDataFile() {ExpectedHeader = "shell eco marathon"};
         
         public DataSetsViewModel()
         {
@@ -72,10 +71,7 @@ namespace RollingRoad.WinApplication.ViewModels
         {
             if(repository == null)
                 throw new ArgumentNullException(nameof(repository));
-
-            if(unitOfWork == null)
-                throw new ArgumentNullException(nameof(unitOfWork));
-
+            
             _dataSetRepository = repository;
             _unitOfWork = unitOfWork;
 
@@ -109,7 +105,7 @@ namespace RollingRoad.WinApplication.ViewModels
                 {
                     DataSet dataset = DataSetLoader.LoadFromFile(filename);
                     dataset = _dataSetRepository.Insert(dataset);
-                    _unitOfWork.Save();
+                    _unitOfWork?.Save();
                     AddDataSet(dataset);
 
                 }

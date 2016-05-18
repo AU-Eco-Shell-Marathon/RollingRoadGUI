@@ -61,6 +61,7 @@
     <Compile Include="Mapping\DataPointMap.cs" />
     <Compile Include="Mapping\DataSetMap.cs" />
     <Compile Include="Mapping\EntityMap.cs" />
+    <Compile Include="MemoryRepository.cs" />
     <Compile Include="Migrations\201604221231360_Initial.cs" />
     <Compile Include="Migrations\201604221231360_Initial.Designer.cs">
       <DependentUpon>201604221231360_Initial.cs</DependentUpon>

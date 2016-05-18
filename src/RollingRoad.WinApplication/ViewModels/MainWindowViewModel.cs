@@ -28,7 +28,7 @@ namespace RollingRoad.WinApplication.ViewModels
                 loggerViewModel = new LoggerViewModel(null, app.Logger);
 
                 Tabs.Add(new LiveDataSourceViewModel() { Logger = loggerViewModel.Logger });
-                Tabs.Add(new DataSetsViewModel(new Repository<DataSet>(app.Context.DataSets), app.UnitOfWork));
+                Tabs.Add(new DataSetsViewModel(new MemoryRepository<DataSet>(), null));
                 Tabs.Add(loggerViewModel);
             }
             else

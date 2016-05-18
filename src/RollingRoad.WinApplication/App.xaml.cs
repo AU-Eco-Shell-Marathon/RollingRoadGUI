@@ -17,8 +17,6 @@ namespace RollingRoad.WinApplication
     public partial class App : Application
     {
         public ILogger Logger { get; }
-        public ApplicationContext Context { get; }
-        public IUnitOfWork UnitOfWork { get; }
 
         public App()
         {
@@ -37,9 +35,6 @@ namespace RollingRoad.WinApplication
             Logger.WriteLine(".Net Version: " + Environment.Version);
             
             AppDomain.CurrentDomain.UnhandledException += CatchException;
-
-            Context = ApplicationContext.Create();
-            UnitOfWork = new UnitOfWork(Context);
         }
 
         public static string GetOSBit()

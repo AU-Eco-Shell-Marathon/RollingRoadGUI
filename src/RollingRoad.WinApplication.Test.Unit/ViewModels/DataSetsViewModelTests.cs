@@ -17,7 +17,7 @@ namespace RollingRoad.WinApplication.Test.Unit.ViewModels
     {
         private IOpenFileDialog _fileDialog;
         private IErrorMessageBox _errorMessageBox;
-        private IDataSetLoader _dataSetLoader;
+        private IDataSetDataFile _dataSetLoader;
 
         private IRepository<DataSet> _repository;
         private IUnitOfWork _unitOfWork; 
@@ -29,7 +29,7 @@ namespace RollingRoad.WinApplication.Test.Unit.ViewModels
         {
             _fileDialog = Substitute.For<IOpenFileDialog>();
             _errorMessageBox = Substitute.For<IErrorMessageBox>();
-            _dataSetLoader = Substitute.For<IDataSetLoader>();
+            _dataSetLoader = Substitute.For<IDataSetDataFile>();
 
             _repository = Substitute.For<IRepository<DataSet>>();
             _unitOfWork = Substitute.For<IUnitOfWork>();
@@ -278,12 +278,6 @@ namespace RollingRoad.WinApplication.Test.Unit.ViewModels
         public void Ctor_RepositoryNull_ExceptionThrown()
         {
             Assert.Throws<ArgumentNullException>(() => new DataSetsViewModel(null, _unitOfWork));
-        }
-
-        [Test]
-        public void Ctor_UnitOfWorkNull_ExceptionThrown()
-        {
-            Assert.Throws<ArgumentNullException>(() => new DataSetsViewModel(_repository, null));
         }
 
         [Test]
