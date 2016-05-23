@@ -1,3 +1,12 @@
-\section{TC4MC - Torque Control File for MotorController}
+% !TeX spellcheck = en_US
+\section{TC4MC}
 
-Is the data storage format used to store torque information about a given track.
+TC4MC (Torque Control File for MotorController) Is the data storage format used to store torque information about a given track. This enables a more accurate simulation on the rolling road. 
+
+The format is based on the DF4RR-Format with a few changes:
+
+\begin{itemize}
+	\item Instead of "shell eco marathon" header in the first row, first coloum, it must be "eco shell marathon torque".
+	\item  The two data coloums "Torque" and "Distance" must be present.
+\end{itemize}
+
