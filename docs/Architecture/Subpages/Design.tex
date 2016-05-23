@@ -38,4 +38,8 @@ This is where the frontends and testing frameworks will be, they can use any int
 
 \section{WPF-Application (Frontend)}
 
-The frontend lays in the outermost layer of the Onion-Architecture, and in this case it's called the 'Presentation Layer'. For the front-end architecture/design MVVM(Model-View-ViewModel) was used, since it's what the WPF-Api heavily supports. It also abstract the view-code from the viewmodel, enabling testing of the viewmodel.
+The frontend is in the outermost layer of the Onion-Architecture, and in this case it's called the 'Presentation Layer'. For the front-end architecture/design MVVM(Model-View-ViewModel) was used, since it's what the WPF-library is build upon and have good support for. It also abstracts the view-code from the viewmodel, enabling testing of the viewmodel.
+
+\section{Testing layers}
+
+In the solution there are two testing projects, one for the core and one for the WPF-Application. It's separated in case we need to remove the WPF-Application at some point, making it easy to differentiate between what tests the core and what test the WPF-Application.
