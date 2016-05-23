@@ -1,9 +1,9 @@
-% !TeX spellcheck = en_US-architecture-part-1/
+% !TeX spellcheck = en_US
 \chapter{Design and Architecture}
 
 \section{Backend}
 
-The backend needed to be able to handle multiple front-ends and a different data-storage option such as a database. There features needs to be available if for example User Story 8 was to be made, since it requires both a change in data-storage and user-interface.
+The backend needed to be able to handle multiple front-ends and a different data-storage option such as a database. These features needs to be available if for example User Story 8 was to be implemented, since the user story requires both a change in data-storage and user-interface.
 
 An architecture matching these requirements are the Onion-Architecture. It was therefor used for overall architecture, this allows multiple front-ends while also abstacting away from the data, making it easy to switch to a database or other datasource.
 
@@ -27,7 +27,7 @@ Since it's outside the core, it's allowed to reference any libraries in the core
 
 \textbf{Outer most ring}
 
-This is where the frontends and testing frameworks will be, they can use any library.
+This is where the frontends and testing frameworks will be, they can use any internal or external library.
 
 \begin{figure}
 	\centering
@@ -38,4 +38,4 @@ This is where the frontends and testing frameworks will be, they can use any lib
 
 \section{WPF-Application (Frontend)}
 
-The frontend also has a ring in the Onion-Architecture called Presentation in this case, and in the RollingRoadGUI, is where the front-end WPF Windows application, on top of the onion architecture, MVVM(Model-View-ViewModel) was used to enabling unit testing.
+The frontend lays in the outermost layer of the Onion-Architecture, and in this case it's called the 'Presentation Layer'. For the front-end architecture/design MVVM(Model-View-ViewModel) was used, since it's what the WPF-Api heavily supports. It also abstract the view-code from the viewmodel, enabling testing of the viewmodel.

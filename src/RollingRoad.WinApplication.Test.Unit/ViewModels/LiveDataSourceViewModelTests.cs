@@ -90,7 +90,7 @@ namespace RollingRoad.WinApplication.Test.Unit.ViewModels
 
             _source.OnNextReadValue += Raise.Event<EventHandler<LiveDataPointsEventArgs>>(new LiveDataPointsEventArgs(data));
 
-            Assert.That(_vm.DataSet.Collection.Where(x => x.Data.FirstOrDefault(y => y.Value == 10) != null).Count(), Is.EqualTo(1));
+            Assert.That(_vm.DataSet.Collection.Count(x => x.Data.FirstOrDefault(y => y.Value == 10) != null), Is.EqualTo(1));
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace RollingRoad.WinApplication.Test.Unit.ViewModels
 
             _source.OnNextReadValue += Raise.Event<EventHandler<LiveDataPointsEventArgs>>(new LiveDataPointsEventArgs(data));
 
-            Assert.That(_vm.DataSet.Collection.Where(x => x.Name == "TestName").Count(), Is.EqualTo(1));
+            Assert.That(_vm.DataSet.Collection.Count(x => x.Name == "TestName"), Is.EqualTo(1));
         }
 
         [Test]
@@ -114,7 +114,7 @@ namespace RollingRoad.WinApplication.Test.Unit.ViewModels
 
             _source.OnNextReadValue += Raise.Event<EventHandler<LiveDataPointsEventArgs>>(new LiveDataPointsEventArgs(data));
 
-            Assert.That(_vm.DataSet.Collection.Where(x => x.Unit == "TestUnit").Count(), Is.EqualTo(1));
+            Assert.That(_vm.DataSet.Collection.Count(x => x.Unit == "TestUnit"), Is.EqualTo(1));
         }
 
         [Test]

@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\MemoryRepositoryTests.cs" />
     <Compile Include="DomainModel\DatasetTests.cs" />
     <Compile Include="DomainModel\DateTypeTests.cs" />
     <Compile Include="DataAccess\CsvDataInterpeterTests.cs" />
