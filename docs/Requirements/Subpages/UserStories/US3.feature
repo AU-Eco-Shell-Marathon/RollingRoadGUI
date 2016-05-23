@@ -8,7 +8,7 @@ Feature: Graph display
 		Then I am able to see a graph with time as x-axis
 		
 	Scenario: Clear graph 
-		Given some that has been collected
+		Given some data has been collected
 		When I press the "Clear" button
 			And I don't want to save current data
 		Then I am asked if I want to save data or not
