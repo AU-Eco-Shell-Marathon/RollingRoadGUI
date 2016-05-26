@@ -152,11 +152,13 @@ namespace RollingRoad.Infrastructure.DataAccess
             //Move data index
             _index++;
 
-            if (Math.Abs(delta) < double.Epsilon)
+            if (delta < double.Epsilon)
                 delta = 1;
 
             if(Status == LiveDataSourceStatus.Running)
                 Timer.Start((int) delta);
+            else
+                Logger.WriteLine("Emulation stopped");
         }
 
         public override string ToString()

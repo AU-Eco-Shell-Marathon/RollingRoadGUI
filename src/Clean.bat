@@ -1,1 +1,1 @@
-"%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" src/RollingRoad.sln /t:Clean /p:Configuration=Release /p:Platform=x64
+"%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" RollingRoad.sln /t:Clean /p:Configuration=Release /p:Platform=x64

@@ -24,6 +24,7 @@ copy "docs\Architecture.pdf" "temp\docs\Architecture.pdf" > NUL
 copy "docs\Requirements.pdf" "temp\docs\Requirements.pdf" > NUL
 copy "docs\Technical.pdf" "temp\docs\Technical.pdf" > NUL
 
+
 del RollingRoadGUI_x64.zip > nul
 powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::CreateFromDirectory('temp', 'RollingRoadGUI_x64.zip'); }"  > NUL
 rd /s /q temp  > NUL

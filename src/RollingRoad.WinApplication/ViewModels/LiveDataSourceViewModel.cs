@@ -9,7 +9,6 @@ using RollingRoad.Core.ApplicationServices;
 using RollingRoad.Core.DomainModel;
 using RollingRoad.Infrastructure.DataAccess;
 using RollingRoad.WinApplication.Dialogs;
-using MessageBox = System.Windows.MessageBox;
 
 namespace RollingRoad.WinApplication.ViewModels
 {
@@ -172,7 +171,7 @@ namespace RollingRoad.WinApplication.ViewModels
         {
             if(CheckAndAskAboutChanges())
             {
-                DataSet.Clear();
+                DataSet.Collection.Clear();
                 HasBeenSaved = true;
             }
         }

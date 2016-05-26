@@ -15,7 +15,7 @@ Feature: Collection of data
 		When I press the Start button
 		Then the collection of data started
 		
-	Scenario: Start collection of data
+	Scenario: Stop collection of data
 		Given a data source is connected to the computer
 			And the collection of data is started
 		When I press the Stop button

@@ -5,8 +5,6 @@ using System.IO;
 using System.Management;
 using System.Windows;
 using RollingRoad.Core.ApplicationServices;
-using RollingRoad.Core.DomainServices;
-using RollingRoad.Infrastructure.DataAccess;
 
 namespace RollingRoad.WinApplication
 {
